@@ -12,8 +12,13 @@
   ],
   "author": "diego",
   "license": "ISC",
+<<<<<<< HEAD
   "engines": {
     "node": ">=14.20.1"
+=======
+  "engine":{
+    "node":">=14.20.1"
+>>>>>>> 264d4438627a135ed15a12af694d00ce10a4e77a
   },
   "dependencies": {
     "body-parse": "^0.1.0",
