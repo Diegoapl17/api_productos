@@ -7,7 +7,6 @@ const ProductoSchema = ({
     },
     nombre:{
         type: String,
-        unique:true,
         required:[true, 'El nombre es obligatorio']
     },
     precioCompra:{
