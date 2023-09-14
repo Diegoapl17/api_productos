@@ -32,6 +32,10 @@ const ProductoSchema = ({
     stockMaximo:{
         type:Number,
         required :[true,'El stock maximo es obligatorio'] 
+    },
+    stockMaximoOOO:{
+        type:Number,
+        required :[true,'El stock22 maximo es obligatorio'] 
     }
 })
 
