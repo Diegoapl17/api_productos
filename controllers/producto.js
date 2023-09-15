@@ -39,11 +39,11 @@ const productoPost = async(req, res) => {
 //Modifcación
 const productoPut = async(req, res = response) => {
 
-    const {nombre, password, rol, estado} = req.body
+    const {idProducto,  nombre,  precioCompra, precioVenta,  cantidad, stockMinimo, estado, stockMaximo } = req.body
     let mensaje = 'Modificación exitosa'
     try{
-         await Producto.findOneAndUpdate({nombre: nombre}, 
-            {password: password, rol:rol, estado:estado})
+         await Producto.updateMany({idProducto: idProducto}, 
+            { $set: { nombre: nombre, precioCompra: precioCompra, precioVenta:precioVenta, estado:estado, cantidad: cantidad, stockMinimo: stockMinimo, stockMaximo: stockMaximo }})
     }
     catch(error){
         mensaje = 'Se presentaron problemas en la modificación.'
@@ -61,7 +61,7 @@ const productoDelete = async(req, res) => {
     let mensaje = 'La eliminiación se efectuó exitosamente.'
 
     try{
-        const producto = await Producto.deleteOne({_id: _id})
+        await Producto.deleteOne({_id: _id})
     }
     catch(error){
         mensaje = 'Se presentaron problemas en la eliminación.'
