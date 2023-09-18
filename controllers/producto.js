@@ -25,7 +25,7 @@ const productoPost = async(req, res) => {
     try {
         const producto = new Producto(body) //Instanciando el objeto
         await producto.save() //Inserta en la colección
-        res.json(producto);
+        // res.json(producto);
     } catch (error) {
         mensaje = error
         console.log(error)
