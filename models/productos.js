@@ -1,26 +1,37 @@
 const {Schema, model} = require('mongoose')
 
 const ProductoSchema = ({
+    idProducto:{
+        type: Number,
+        unique:true
+    },
     nombre:{
         type: String,
-        unique:true,
         required:[true, 'El nombre es obligatorio']
     },
-    password:{
-        type: String,
-        unique:[true,'la contraseña es obligatoria'],
-        minlenght:[3, 'Debe tener minimo 3 caracteres'],
-        //maslenght:[7, 'Debe tener maximo 3 caracteres'] 
+    precioCompra:{
+        type: Number,
+        required:[true,'El precio de compra es obligatorio'] 
     },
-    rol:{
-        type:String,
-        required :true,
-        enum:['Admin','Usuario']
+    precioVenta:{
+        type:Number,
+        required :[true,'El precio de venta es obligatorio'] 
+    },
+    cantidad:{
+        type: Number,
+        required:[true,'La cantidad es obligatoria'] 
+    },
+    stockMinimo:{
+        type:Number,
+        required :[true,'El stock minimo es obligatorio'] 
     },
     estado:{
-        type: Boolean,
-        default:true,
-        enum:[true, 'El estado es obligatorio']
+        type:String,
+        required :[true,'El estado es obligatorio'] 
+    },
+    stockMaximo:{
+        type:Number,
+        required :[true,'El stock maximo es obligatorio'] 
     }
 })
 
