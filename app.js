@@ -8,7 +8,7 @@ server.app.use(express.json());
 
 // Ruta para recibir peticiones por nombre de usuario
 server.app.get('/api/usuario/:nombre', (req, res) => {
-  const nombreUsuario = req.query.nombre;
+  const nombreUsuario = req.params.nombre;
 
   // Aquí puedes realizar alguna lógica para obtener información del usuario
   // Puedes acceder a la base de datos u otro sistema para obtener la información
