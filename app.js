@@ -7,7 +7,9 @@ const server = new Server()//instanciar el objeto
 server.app.use(express.json());
 
 // Ruta para recibir peticiones por nombre de usuario
-server.app.get('/api/usuario/:idProducto', async (req, res) => {
+server.app.get('/:id', productoGetId); 
+
+const productoGetId =  async (req, res) => {
  
 const { idProducto } = req.params; 
 
@@ -23,7 +25,7 @@ try {
     res.status(500).json({ mensaje: 'Error interno del servidor' });
 }
 
-});
+};
 
 server.listen()//escuchar las peticiones del servidor para saber si funciona Servidor local iniciarlo
 
