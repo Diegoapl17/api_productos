@@ -6,19 +6,19 @@ const server = new Server()//instanciar el objeto
 
 server.app.use(express.json());
 
-// Ruta para recibir peticiones por nombre de usuario
-Server.app.get('/api/usuario/:nombre', (req, res) => {
-  const nombreUsuario = req.params.nombre;
+const { idProducto } = req.params; 
 
-  // Aquí puedes realizar alguna lógica para obtener información del usuario
-  // Puedes acceder a la base de datos u otro sistema para obtener la información
-  const informacionUsuario = {
-    nombre: nombreUsuario,
-    // Otros datos del usuario...
-  };
+try {
+    const usuarioID = await ProductoSchema.findById(idProducto);
 
-  res.json(informacionUsuario);
-});
+    if (!usuarioID) {
+        return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    }
+    res.json({ usuarioID });
+} catch (error) {
+    console.error('Error al buscar usuario por ID:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+}
 
 server.listen()//escuchar las peticiones del servidor para saber si funciona Servidor local iniciarlo
 
