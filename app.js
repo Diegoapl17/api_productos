@@ -6,6 +6,9 @@ const server = new Server()//instanciar el objeto
 
 server.app.use(express.json());
 
+// Ruta para recibir peticiones por nombre de usuario
+server.app.get('/api/usuario/:idProducto', async (req, res) => {
+ 
 const { idProducto } = req.params; 
 
 try {
@@ -19,6 +22,8 @@ try {
     console.error('Error al buscar usuario por ID:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor' });
 }
+
+});
 
 server.listen()//escuchar las peticiones del servidor para saber si funciona Servidor local iniciarlo
 
