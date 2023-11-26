@@ -7,7 +7,7 @@ const server = new Server()//instanciar el objeto
 server.app.use(express.json());
 
 // Ruta para recibir peticiones por nombre de usuario
-server.app.get('/:id', productoGetId()); 
+route.get('/:id', productoGetId()); 
 
 const productoGetId =  async (req, res) => {
  
