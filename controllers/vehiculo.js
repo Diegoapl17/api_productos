@@ -1,30 +1,30 @@
 const {response} = require('express');
 
 //importacion de los metodos 
-const Producto = require('../models/productos');
+const Vehiculo = require('../models/vehiculos');
 
 
 
 //consultar para obtener los usuarios en una variable de tipo asincrona 
-const productoGet  = async (req, res = response) => {
+const vehiculoGet  = async (req, res = response) => {
     // const {nombre} = req.query//desecstructuracion
 
     //consultar todos los uduarios
-    const productos = await Producto.find(); //esto nos da una respuesta
+    const vehiculos = await Vehiculo.find(); //esto nos da una respuesta
 
     //convierte los usuarios en json 
     res.json({
-        productos
+        vehiculos
     })
 }
 
 
-const productoPost = async(req, res) => {
+const vehiculoPost = async(req, res) => {
     let mensaje = 'Inserción Exitosa'
     const body = req.body //Captura de atributos
     try {
-        const producto = new Producto(body) //Instanciando el objeto
-        await producto.save() //Inserta en la colección
+        const vehiculo = new Vehiculo(body) //Instanciando el objeto
+        await vehiculo.save() //Inserta en la colección
         // res.json(producto);
     } catch (error) {
         mensaje = error
@@ -35,16 +35,15 @@ const productoPost = async(req, res) => {
     })
 }
 
-//Juan Sebastián Granada
 
 //Modifcación
-const productoPut = async(req, res = response) => {
+const vehiculoPut = async(req, res = response) => {
 
-    const {idProducto,  nombre,  precioCompra, precioVenta,  cantidad, stockMinimo, estado, stockMaximo } = req.body
+    const {numero,  placa,  horasReparacion, precioReparacion,  observaciones } = req.body
     let mensaje = 'Modificación exitosa'
     try{
-         await Producto.updateMany({idProducto: idProducto}, 
-            { $set: { nombre: nombre, precioCompra: precioCompra, precioVenta:precioVenta, estado:estado, cantidad: cantidad, stockMinimo: stockMinimo, stockMaximo: stockMaximo }})
+         await Vehiculo.updateMany({placa: placa}, 
+            { $set: { numero: numero, horasReparacion: horasReparacion, precioReparacion:precioReparacion, observaciones:observaciones }})
     }
     catch(error){
         mensaje = 'Se presentaron problemas en la modificación.'
@@ -56,13 +55,13 @@ const productoPut = async(req, res = response) => {
 }
 
 //Eliminación
-const productoDelete = async(req, res) => {
+const vehiculoDelete = async(req, res) => {
 
-    const {idProducto} = req.body
+    const {placa} = req.body
     let mensaje = 'La eliminiación se efectuó exitosamente.'
 
     try{
-        await Producto.deleteOne({idProducto: idProducto})
+        await Vehiculo.deleteOne({placa: placa})
     }
     catch(error){
         mensaje = 'Se presentaron problemas en la eliminación.'
@@ -74,8 +73,8 @@ const productoDelete = async(req, res) => {
 }
 
 module.exports = {
-    productoGet,
-    productoPost,
-    productoPut,
-    productoDelete
+    vehiculoGet,
+    vehiculoPost,
+    vehiculoPut,
+    vehiculoDelete
 }
