@@ -58,11 +58,11 @@ const productoPut = async(req, res = response) => {
 //Eliminación
 const productoDelete = async(req, res) => {
 
-    const {_id} = req.body
+    const {idProducto} = req.body
     let mensaje = 'La eliminiación se efectuó exitosamente.'
 
     try{
-        await Producto.deleteOne({_id: _id})
+        await Producto.deleteOne({idProducto: idProducto})
     }
     catch(error){
         mensaje = 'Se presentaron problemas en la eliminación.'
